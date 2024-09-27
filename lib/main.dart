@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user/pages/Auth/sing/Sing.dart';
 import 'package:user/shard/constant/blocBrovide.dart';
-import 'package:user/shard/cubit/AuthSin/cubitAuth.dart';
+import 'package:user/shard/cubit/AuthSin/AuthSing/cubitAuth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

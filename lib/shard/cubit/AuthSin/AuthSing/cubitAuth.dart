@@ -1,10 +1,8 @@
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user/shard/commponted/Dafult/DafiltAwssdailog.dart';
-import 'package:user/shard/cubit/AuthSin/stateAuth.dart';
+import 'package:user/shard/cubit/AuthSin/AuthSing/stateAuth.dart';
 
 class AppCubitSin extends Cubit<AppStatesSing> {
   late TextEditingController NameControol;

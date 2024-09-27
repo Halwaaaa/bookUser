@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user/shard/commponted/Dafult/DafultBoutton.dart';
 import 'package:user/shard/commponted/Dafult/DafultTextFormFiled.dart';
 import 'package:user/shard/constant/config.dart';
-import 'package:user/shard/cubit/AuthSin/cubitAuth.dart';
-import 'package:user/shard/cubit/AuthSin/stateAuth.dart';
+import 'package:user/shard/cubit/AuthSin/AuthSing/cubitAuth.dart';
+import 'package:user/shard/cubit/AuthSin/AuthSing/stateAuth.dart';
 
 class SingView extends StatelessWidget {
   const SingView({Key? key}) : super(key: key);
