@@ -10,6 +10,7 @@ class AppCubitSin extends Cubit<AppStatesSing> {
   late TextEditingController EmailControol;
   late TextEditingController PasswordControol;
   late bool loding;
+  
   var keyform = GlobalKey<FormState>();
 
   AppCubitSin() : super(AppInitialStates()) {
