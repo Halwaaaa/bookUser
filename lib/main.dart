@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user/pages/Auth/login/login_scarren.dart';
 import 'package:user/pages/Auth/sing/Sing.dart';
+import 'package:user/pages/MainLayout/layout.dart';
+import 'package:user/servers/Email.dart';
 import 'package:user/shard/constant/blocBrovide.dart';
 import 'package:user/shard/constant/methed.dart';
 import 'package:user/shard/cubit/AuthSin/AuthSing/cubitAuth.dart';
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    //ServersEmail().sendEmail();
     //Dafult(context: context);
     return MultiBlocProvider(
       providers: [
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const Login(),
+        home: const layoutView(),
       ),
     );
   }

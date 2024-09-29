@@ -3,8 +3,10 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user/pages/Auth/Verification/Verification.dart';
 import 'package:user/servers/internet.dart';
 import 'package:user/shard/commponted/Dafult/DafiltAwssdailog.dart';
+import 'package:user/shard/constant/pageRoute.dart';
 import 'package:user/shard/cubit/AuthSin/AuthLogin/StateLogin.dart';
 import 'package:user/shard/cubit/AuthSin/AuthSing/stateAuth.dart';
 
@@ -64,8 +66,11 @@ class AppCubitLogin extends Cubit<AppStateLogin> {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(
             email: emilController.text, password: PasswordController.text)
-        .then((value) => null)
-        .catchError((error) {
+        .then((value) async {
+      await value.user?.sendEmailVerification();
+      Navigator.push(
+          context, page(pagee: VerificationView(userCredential: value)));
+    }).catchError((error) {
       if (error is FirebaseAuthException) {
         if (error.message?.contains('403') == true) {
           DafultAwssomeDialog(context, massges: 'الوقع غير فغال فى منطقتك')

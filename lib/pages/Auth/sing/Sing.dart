@@ -109,7 +109,7 @@ class SingView extends StatelessWidget {
                   isLoding: cubit.loding,
                   titil: "سجل",
                   ontap: () {
-                    cubit.SingWithEmail(context);
+                    cubit.TapSin(context);
 
                     // if (keyform.currentState!.validate()) {
                     //   // navigateTo(
