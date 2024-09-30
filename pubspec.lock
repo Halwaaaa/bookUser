@@ -361,7 +361,7 @@ packages:
     source: hosted
     version: "6.1.2"
   rive:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: rive
       sha256: "255ab7892a77494458846cecee1376a017e64fd6b4130b51ec21424d12ffa6fe"
