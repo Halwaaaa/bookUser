@@ -1,4 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:user/modles/riveIcon.dart';
+import 'package:user/pages/MainLayout/Advenced/Advenced.dart';
+import 'package:user/pages/MainLayout/Home/Home.dart';
+import 'package:user/pages/MainLayout/Scheduled/Scheduled.dart';
 
 List<ModelsriveIcon> ModulesriveIcon = [
   ModelsriveIcon(
@@ -25,4 +29,11 @@ List<ModelsriveIcon> ModulesriveIcon = [
       TimeStart: 2000,
       src: 'Assest/Rive/new_file.riv',
       stateMachingName: 'State Machine 1'),
+];
+
+List<Widget> ModulesScaarnLayout = [
+  const HomeView(),
+  const ScheduledView(),
+  const Advenced(),
+  const Advenced(),
 ];

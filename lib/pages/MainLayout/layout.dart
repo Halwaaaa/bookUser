@@ -32,60 +32,56 @@ class _layoutViewState extends State<layoutView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppCubitLoyout(),
-      child: BlocConsumer<AppCubitLoyout, AppStatesLoyout>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            var cubit = AppCubitLoyout.get(context);
-            return Scaffold(
-              body: Column(
-                children: [
-                  const Spacer(),
-                  Container(
-                      alignment: Alignment.center,
-                      constraints: const BoxConstraints(
-                        maxWidth: 400,
-                      ),
-                      width: double.infinity,
-                      margin: const EdgeInsets.all(20),
-                      height: 60,
-                      decoration: const ShapeDecoration(
-                          color: Color.fromRGBO(26, 35, 126, 1.0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadiusDirectional.all(
-                                Radius.circular(20)),
-                          )),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children:
-                            List.generate(ModulesriveIcon.length, (index) {
-                          return GestureDetector(
-                            onTap: () async {
-                              cubit.TapIconRive(
-                                  index,
-                                  ModulesriveIcon[index].TimeStart,
-                                  ModulesriveIcon[index].Time);
+    return BlocConsumer<AppCubitLoyout, AppStatesLoyout>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          var cubit = AppCubitLoyout.get(context);
+          return Scaffold(
+            body: Column(
+              children: [
+                Expanded(child: ModulesScaarnLayout[cubit.indexOfScren]),
+                Container(
+                    alignment: Alignment.center,
+                    constraints: const BoxConstraints(
+                      maxWidth: 400,
+                    ),
+                    width: double.infinity,
+                    margin: const EdgeInsets.all(20),
+                    height: 60,
+                    decoration: const ShapeDecoration(
+                        color: Color.fromRGBO(26, 35, 126, 1.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadiusDirectional.all(Radius.circular(20)),
+                        )),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(ModulesriveIcon.length, (index) {
+                        return GestureDetector(
+                          onTap: () async {
+                            cubit.TapIconRive(
+                                index,
+                                ModulesriveIcon[index].TimeStart,
+                                ModulesriveIcon[index].Time);
+                          },
+                          child: RiveAnimation.asset(
+                            ModulesriveIcon[index].src,
+                            controllers: const [],
+                            useArtboardSize: true,
+                            artboard: ModulesriveIcon[index].artboard,
+                            onInit: (p0) {
+                              cubit.onInit(
+                                  p0,
+                                  ModulesriveIcon[index].stateMachingName,
+                                  index);
                             },
-                            child: RiveAnimation.asset(
-                              ModulesriveIcon[index].src,
-                              controllers: const [],
-                              useArtboardSize: true,
-                              artboard: ModulesriveIcon[index].artboard,
-                              onInit: (p0) {
-                                cubit.onInit(
-                                    p0,
-                                    ModulesriveIcon[index].stateMachingName,
-                                    index);
-                              },
-                            ),
-                          );
-                        }),
-                      )),
-                ],
-              ),
-            );
-          }),
-    );
+                          ),
+                        );
+                      }),
+                    )),
+              ],
+            ),
+          );
+        });
   }
 }

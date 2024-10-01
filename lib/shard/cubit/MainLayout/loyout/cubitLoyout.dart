@@ -5,7 +5,12 @@ import 'package:rive/rive.dart';
 
 class AppCubitLoyout extends Cubit<AppStatesLoyout> {
   late List<StateMachineController?>? controller;
+  late StateMachineController? controllerDrawer;
   late List<bool> initState;
+  late bool initState1;
+  late int indexOfScren;
+  late SMIBool? isDrawer;
+  late bool isDrawerOpan;
   AppCubitLoyout() : super(AppinitLoyout()) {
     init();
   }
@@ -19,6 +24,9 @@ class AppCubitLoyout extends Cubit<AppStatesLoyout> {
   void init() {
     controller = [];
     initState = List.generate(4, (index) => true);
+    indexOfScren = 0;
+    isDrawerOpan = false;
+    initState1 = true; // isDrawer?.value = false;
   }
 
   void Colse() {
@@ -29,6 +37,10 @@ class AppCubitLoyout extends Cubit<AppStatesLoyout> {
 
   static AppCubitLoyout get(context) {
     return BlocProvider.of(context);
+  }
+
+  void ControllerDarwer(bool value) {
+    isDrawerOpan = value;
   }
 
   void onInit(Artboard artboard, String stateMachineName, int index) {
@@ -48,10 +60,13 @@ class AppCubitLoyout extends Cubit<AppStatesLoyout> {
         artboard.addController(controller![index]!);
       }
       controller?[index]?.isActive = false;
+      ControllerDarwer(false);
     }
   }
 
   Future<void> TapIconRive(int index, int startTime, int Time) async {
+    ChandedIndex(index);
+
     controller?[index]?.isActive = true;
     await Future.delayed(
       Duration(milliseconds: initState[index] ? startTime : Time),
@@ -59,5 +74,10 @@ class AppCubitLoyout extends Cubit<AppStatesLoyout> {
 
     controller?[index]?.isActive = false;
     initState[index] = false;
+  }
+
+  void ChandedIndex(int newindex) {
+    indexOfScren = newindex;
+    emit(AppChangedIndexLoyout());
   }
 }
