@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:user/shard/Widget/Info_card.dart';
+import 'package:user/shard/commponted/Widget/Info_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 List<bool> isActive = [false, false, false, false];

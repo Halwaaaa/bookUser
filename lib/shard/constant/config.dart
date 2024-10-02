@@ -9,7 +9,7 @@ class Config {
   Color colorCircelAvater = const Color.fromRGBO(217, 217, 217, 1);
   Color colorSmailText = const Color.fromRGBO(140, 138, 140, 1);
   Color colorBackgroundDark = const Color.fromRGBO(69, 85, 85, 10);
-  Color PrimerColor = const Color.fromRGBO(135, 206, 235, 1);
+  Color PrimerColor = const Color.fromARGB(255, 123, 204, 236);
 
   Color colorAppbar2 = const Color.fromRGBO(34, 139, 34, 1);
   Color colorAppbar3 = const Color.fromRGBO(211, 211, 211, 1);

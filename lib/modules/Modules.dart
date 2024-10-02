@@ -32,7 +32,7 @@ List<ModelsriveIcon> ModulesriveIcon = [
 ];
 
 List<Widget> ModulesScaarnLayout = [
-  const HomeView(),
+  HomeView(),
   const ScheduledView(),
   const Advenced(),
   const Advenced(),
