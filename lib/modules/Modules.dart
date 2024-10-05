@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:user/modles/riveIcon.dart';
 import 'package:user/pages/MainLayout/Advenced/Advenced.dart';
+import 'package:user/pages/MainLayout/Advenced/advice_Screen.dart';
 import 'package:user/pages/MainLayout/Home/Home.dart';
 import 'package:user/pages/MainLayout/Scheduled/Scheduled.dart';
 
@@ -32,8 +33,8 @@ List<ModelsriveIcon> ModulesriveIcon = [
 ];
 
 List<Widget> ModulesScaarnLayout = [
-  HomeView(),
+  const HomeView(),
   const ScheduledView(),
-  const Advenced(),
+  const AdviceView(),
   const Advenced(),
 ];
