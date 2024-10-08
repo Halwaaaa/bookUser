@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:user/pages/Auth/Verification/Verification.dart';
-import 'package:user/pages/Auth/login/login_scarren.dart';
-import 'package:user/servers/internet.dart';
-import 'package:user/shard/commponted/Dafult/DafiltAwssdailog.dart';
-import 'package:user/shard/constant/pageRoute.dart';
+import 'package:user/featuers/Auth/Verification/Verification.dart';
+import 'package:user/featuers/Auth/login/login_scarren.dart';
+import 'package:user/core/servers/internet.dart';
+import 'package:user/core/commponted/Dafult/DafiltAwssdailog.dart';
+import 'package:user/core/constant/pageRoute.dart';
 import 'package:user/shard/cubit/AuthSin/AuthSing/stateAuth.dart';
 
 class AppCubitSin extends Cubit<AppStatesSing> {
