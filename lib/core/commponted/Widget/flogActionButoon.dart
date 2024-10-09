@@ -8,7 +8,7 @@ Widget flogActionButoon({required var onpress}) {
     child: ElevatedButton(
         style: ElevatedButton.styleFrom(
             animationDuration: const Duration(seconds: 2),
-            backgroundColor: Config().PrimerColor,
+            backgroundColor: Colors.amber,
             disabledBackgroundColor: Colors.amber,
             disabledForegroundColor: Colors.amber),
         onPressed: onpress,

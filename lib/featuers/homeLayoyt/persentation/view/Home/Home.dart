@@ -45,8 +45,6 @@ class HomeView extends StatelessWidget {
                 expandedHeight: ResponsvTextSizemix(height * 0.32, 300),
                 flexibleSpace: FlexibleSpaceBar(
                   centerTitle: true,
-                  //   titlePadding: const EdgeInsetsDirectional.only(start: 40),
-                  //  collapseMode: CollapseMode.parallax,
                   title: InkWell(
                     onTap: () {
                       //      navigateTo(context, SearchScreen());

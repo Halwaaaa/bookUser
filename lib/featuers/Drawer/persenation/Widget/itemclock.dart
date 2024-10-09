@@ -56,11 +56,7 @@ class ItemClock extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        cubit.Time[index]["status"] == "do"
-                            ? cubit.upDataBasedoStaus(
-                                status: "nodo", id: cubit.Time[index]["id"])
-                            : cubit.upDataBasedoStaus(
-                                status: "do", id: cubit.Time[index]["id"]);
+                        cubit.changedStatusClock(index);
                       },
                       child: Container(
                         width: 55,
@@ -80,7 +76,6 @@ class ItemClock extends StatelessWidget {
                           child: AnimatedAlign(
                             duration: const Duration(milliseconds: 500),
                             alignment: cubit.Time[index]["status"] == "do"
-                                // isShowDateles1[index]
                                 ? AlignmentDirectional.topEnd
                                 : AlignmentDirectional.topStart,
                             child: Container(
@@ -111,20 +106,10 @@ class ItemClock extends StatelessWidget {
                     ? ItemopenClock(
                         valueboxdaliy: isdaliy,
                         onchangedWeek: (p0) {
-                          isdaliy = !isdaliy;
-                          isdaliy == true
-                              ? cubit.upDataBaseDaliy(
-                                  daliy: 1, id: cubit.Time[index]["id"])
-                              : cubit.upDataBaseDaliy(
-                                  daliy: 0, id: cubit.Time[index]["id"]);
+                          cubit.changedDaliyClock(index, isdaliy);
                         },
                         onchangedDaliy: (p0) {
-                          isdaliy = !isdaliy;
-                          isdaliy == true
-                              ? cubit.upDataBaseDaliy(
-                                  daliy: 1, id: cubit.Time[index]["id"])
-                              : cubit.upDataBaseDaliy(
-                                  daliy: 0, id: cubit.Time[index]["id"]);
+                          cubit.changedDaliyClock(index, isdaliy);
                         },
                         valueboxWeek: !isdaliy,
                         ontap: () {

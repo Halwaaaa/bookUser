@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:user/featuers/Auth/Verification/Verification.dart';
+import 'package:user/featuers/Auth/presenation/viwe/Verification/Verification.dart';
 import 'package:user/core/servers/internet.dart';
 import 'package:user/core/commponted/Dafult/DafiltAwssdailog.dart';
 import 'package:user/core/constant/pageRoute.dart';

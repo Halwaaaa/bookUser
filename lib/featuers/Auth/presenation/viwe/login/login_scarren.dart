@@ -7,6 +7,7 @@ import 'package:user/core/commponted/Dafult/DafultBoutton.dart';
 import 'package:user/core/commponted/Dafult/DafultTextFormFiled.dart';
 import 'package:user/core/constant/config.dart';
 import 'package:user/core/constant/methed.dart';
+import 'package:user/core/utls/imagesData.dart';
 
 import 'package:user/shard/cubit/AuthSin/AuthLogin/CubitLogin.dart';
 import 'package:user/shard/cubit/AuthSin/AuthLogin/StateLogin.dart';
@@ -19,13 +20,7 @@ class Login extends StatelessWidget {
     return BlocProvider<AppCubitLogin>(
       create: (context) => AppCubitLogin(),
       child: BlocConsumer<AppCubitLogin, AppStateLogin>(
-        listener: (context, state) {
-          // if (state is DoctorLoginSucssesState) {
-          //   // CacheHelper.saveData(key: 'uid', value: state.uid);
-
-          //   // navigateAndFinish(context, const navbairRoot());
-          // }
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           final double wdith = MediaQuery.sizeOf(context).width;
           final double hight = MediaQuery.sizeOf(context).width;
@@ -44,11 +39,11 @@ class Login extends StatelessWidget {
                       child: Container(
                         height: hight * 0.4,
                         width: wdith * 0.4,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                             image: DecorationImage(
                           fit: BoxFit.cover,
                           image: AssetImage(
-                            'Assest/images/login.jpg',
+                            imagesData.TimageLogin,
                           ),
                         )),
                       ),

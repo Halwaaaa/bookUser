@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user/core/commponted/Dafult/DafultBoutton.dart';
 import 'package:user/core/commponted/Dafult/DafultTextFormFiled.dart';
 import 'package:user/core/constant/config.dart';
+import 'package:user/featuers/Auth/presenation/widget/AppBarSing.dart';
 import 'package:user/shard/cubit/AuthSin/AuthSing/cubitAuth.dart';
 import 'package:user/shard/cubit/AuthSin/AuthSing/stateAuth.dart';
 
@@ -22,38 +23,7 @@ class SingView extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(
-                  height: 75,
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: IconButton(
-                      icon: const Icon(Icons.arrow_left),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                const Text(
-                  '!! هياا لنبدأ',
-                  style: TextStyle(fontSize: 20, fontFamily: 'jannah'),
-                ),
-                const Text(
-                  'أنشأ حسابك للتواصل مع طبيبك. ',
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontFamily: 'jannah',
-                      color: Color(0xFFb4b4b4)),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const AppBarSing(),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Form(
@@ -110,17 +80,6 @@ class SingView extends StatelessWidget {
                   titil: "سجل",
                   ontap: () {
                     cubit.TapSin(context);
-
-                    // if (keyform.currentState!.validate()) {
-                    //   // navigateTo(
-                    //   //     context,
-                    //   //     singtwo(
-                    //   //       ageControlle: ageController.text,
-                    //   //       locationController: locationController.text,
-                    //   //       nameController: nameController.text,
-                    //   //       phoneController: phoneController.text,
-                    //   //     ));
-                    // }
                   },
                 ),
                 const SizedBox(

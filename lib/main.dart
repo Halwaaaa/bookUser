@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:user/core/servers/localNot.dart';
-import 'package:user/featuers/Auth/login/login_scarren.dart';
-import 'package:user/featuers/Auth/sing/Sing.dart';
+import 'package:user/featuers/Auth/presenation/viwe/login/login_scarren.dart';
 import 'package:user/featuers/MainLayout/persenation/view/Main.dart';
 import 'package:user/featuers/homeLayoyt/layout.dart';
 import 'package:user/core/servers/Email.dart';
@@ -12,12 +12,17 @@ import 'package:user/core/constant/methed.dart';
 import 'package:user/shard/cubit/AuthSin/AuthSing/cubitAuth.dart';
 import 'package:user/shard/cubit/MainLayout/loyout/cubitLoyout.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:workmanager/workmanager.dart';
+
+@pragma('vm:entry-point')
+void callbackDispatcher() {
+  WorkDo();
+}
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-  Bloc.observer = MyBlocObserver();
-  await AndroidAlarmManager.initialize();
+  initApp();
+
+  // تسجيل المهمة
 
   runApp(const MyApp());
 }
@@ -47,4 +52,31 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+void WorkDo() {
+  return Workmanager().executeTask((task, inputData) async {
+    print(task);
+    print(inputData);
+    print("dddddddddddddddddddddddddddd");
+    Noti().showBigTextNotification(
+        title: "منبه دوائي",
+        body: "${inputData!['h']}:${inputData['m']}موعد الدواء الان",
+        id: inputData['id']);
+
+    // منطق المهمة
+    return Future.value(true);
+  });
+}
+
+void initApp() {
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  WidgetsFlutterBinding.ensureInitialized();
+  Noti.initialize(flutterLocalNotificationsPlugin, (p0) => null);
+  Workmanager().cancelAll();
+  // await Firebase.initializeApp();
+  Bloc.observer = MyBlocObserver();
+  // await AndroidAlarmManager.initialize();
+  Workmanager().initialize(callbackDispatcher, isInDebugMode: true);
 }

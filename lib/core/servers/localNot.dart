@@ -66,7 +66,7 @@ class Noti {
     //         UILocalNotificationDateInterpretation.wallClockTime);
 
     await flutterLocalNotificationsPlugin.show(
-      0,
+      id,
       title,
       body,
       not(),

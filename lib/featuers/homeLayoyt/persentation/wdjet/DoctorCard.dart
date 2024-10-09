@@ -4,6 +4,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:user/core/commponted/Dafult/DafultImageCircel.dart';
 import 'package:user/core/utls/TextStyle.dart';
+import 'package:user/core/utls/imagesData.dart';
 
 Widget ItemDoctorCard(
   context,
@@ -26,11 +27,7 @@ Widget ItemDoctorCard(
               children: [
                 Row(
                   children: [
-                    const DafultImageCircle(
-                      raduis: 40,
-                      url:
-                          'https://img.freepik.com/free-photo/portrait-fair-haired-beautiful-female-woman-with-broad-smile-thumbs-up_176420-14970.jpg?w=740&t=st=1677387568~exp=1677388168~hmac=7be1350ca20645b1de2db1d545e0a3785d3fc0c0879c0d8c93ae350795501103',
-                    ),
+                    DafultImageCircle(raduis: 40, url: imagesData.TimageDafult),
                     const SizedBox(
                       width: 10,
                     ),
@@ -95,30 +92,7 @@ Widget ItemDoctorCard(
                         ),
                         color: Colors.grey[200],
                       ),
-                      child: const Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              IconlyBroken.star,
-                              size: 20,
-                              color: Colors.amber,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              'kkkk stars',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12,
-                                fontFamily: 'jannah',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      child: const itemSatar(),
                     ),
                   ],
                 ),
@@ -128,3 +102,33 @@ Widget ItemDoctorCard(
         ),
       ),
     );
+
+class itemSatar extends StatelessWidget {
+  const itemSatar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Icon(
+            IconlyBroken.star,
+            size: 20,
+            color: Colors.amber,
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          Text('kkkk stars',
+              style: textStyle.textStyle12.copyWith(
+                color: Colors.grey,
+              )),
+        ],
+      ),
+    );
+  }
+}

@@ -7,12 +7,31 @@
     android:name="dev.fluttercommunity.plus.androidalarmmanager.AlarmService"
     android:permission="android.permission.BIND_JOB_SERVICE"
     android:exported="false"/>
+
+
+    
+    <receiver android:name="com.milad.android_alarm_manager.AlarmReceiver" android:exported="true"/>
+<receiver android:name="com.milad.android_alarm_manager.BootReceiver" android:enabled="true" android:exported="true">
+    <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+    </intent-filter>
+</receiver>
     <receiver
     android:name="dev.fluttercommunity.plus.androidalarmmanager.AlarmBroadcastReceiver"
     android:exported="false"/>
 <receiver
     android:name="dev.fluttercommunity.plus.androidalarmmanager.RebootBroadcastReceiver"
     android:enabled="false"/>
+    <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+<receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+    <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+        <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+        <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+        <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+    </intent-filter>
+</receiver>
+
     
         <activity
             android:name=".MainActivity"

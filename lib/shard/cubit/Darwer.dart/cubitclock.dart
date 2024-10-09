@@ -10,20 +10,15 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:user/core/servers/localNot.dart';
-import 'dart:ui' as ui;
 
 import 'package:user/shard/cubit/Darwer.dart/statesclock.dart';
+import 'package:workmanager/workmanager.dart';
 
 //import 'package:path_provider/path_provider.dart';
 int? idA;
 
 class AppCubit extends Cubit<AppStates> {
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
-  AppCubit() : super(AppInitialStates()) {
-    Noti.initialize(flutterLocalNotificationsPlugin, (p0) => null);
-  }
+  AppCubit() : super(AppInitialStates());
   static AppCubit get(context) {
     return BlocProvider.of(context);
   }
@@ -55,25 +50,7 @@ class AppCubit extends Cubit<AppStates> {
 
   //String cubit = "";
 
-  Future<Uint8List> getImageDataRow(
-      String image, double width, double hight) async {
-    var imagrData = await rootBundle.load(image);
-    var imgeCode = await ui.instantiateImageCodec(
-        imagrData.buffer.asUint8List(),
-        targetHeight: hight.round(),
-        targetWidth: width.round());
-    var imageFram = await imgeCode.getNextFrame();
-    var imagebutData =
-        await imageFram.image.toByteData(format: ui.ImageByteFormat.png);
-
-    return imagebutData!.buffer.asUint8List();
-  }
-
   late Image image;
-
-  Future<Image> getimages() async {
-    return Image.memory(await getImageDataRow('images/doctor_9.jpg', 100, 50));
-  }
 
   late Database? database;
   Future<Database?> get databasee async {
@@ -160,6 +137,7 @@ class AppCubit extends Cubit<AppStates> {
         }
         if (Element['status'] == 'nodo') {
           AndroidAlarmManager.cancel(Element["id"]);
+          Workmanager().cancelByUniqueName('${Element["id"]}');
         }
       });
 
@@ -174,6 +152,8 @@ class AppCubit extends Cubit<AppStates> {
   }) async {
     await database
         ?.rawDelete('DELETE FROM Time WHERE id = ?', [id]).then((value) {
+      Workmanager().cancelByUniqueName('$id');
+
       getDataBase(database);
     });
   }
@@ -216,32 +196,48 @@ class AppCubit extends Cubit<AppStates> {
       required int hours,
       required int min,
       required String boby}) async {
-    //  print("dfghjkkkkkkkk");
     final DateTime now = DateTime.now();
 
-    DateTime scheduledDate = DateTime(now.year, now.month, now.day, hours,
-        min); // // DateTime y = DateTime(25);
-    // print(scheduledDate.day);
+    DateTime scheduledDate = DateTime(now.year, now.month, now.day, hours, min);
     DateTime time = scheduledDate.add(const Duration(seconds: 10));
     if (scheduledDate.isBefore(now)) {
       //print(now);
       time = time.add(const Duration(days: 1));
       // print(time.minute);
     }
-    print(id);
+    Duration discalulate = time.difference(now);
 
-    AndroidAlarmManager.periodic(const Duration(days: 1), id, show,
-            startAt: now, allowWhileIdle: true, exact: true, wakeup: true)
+    Workmanager()
+        .registerPeriodicTask("$id", "send_notification_task",
+            frequency: const Duration(days: 1),
+            initialDelay: discalulate,
+            inputData: {'id': id, 'h': hours, 'm': min},
+            constraints: Constraints(
+                networkType: NetworkType.not_required,
+                requiresBatteryNotLow: false,
+                requiresCharging: false,
+                requiresStorageNotLow: false,
+                requiresDeviceIdle: false))
         .then((value) {
-      print(value);
+      print("llllllllllllllllllllllllll");
     });
+
+    //   print("dfghjkkkkkkkk");
+    //   //   // print(scheduledDate.day);
+
+    //   print(id);
+
+    //   AndroidAlarmManager.oneShotAt(time, id, show,
+    //           allowWhileIdle: true, exact: true, wakeup: true)
+    //       .then((value) {
+    //     print(value);
+    //   });
+    // }
   }
-}
 
-void show() {
-  print("dddddddddddddddddddddddddddd");
-  Noti()
-      .showBigTextNotification(title: "منبه دوائي", body: "nموعد الدواء الان");
-}
+  @pragma('vm:entry-point')
+  void show() {}
 
-void changeIndexAppBar(int value) {}
+  void changeIndexAppBar(int value) {}
+  // Mandatory if the App is obfuscated or using Flutter 3.1+
+}
